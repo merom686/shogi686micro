@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <sstream>
 #include <vector>
 #include <string>
@@ -363,7 +363,6 @@ Position *Position::fromSfen(const string& s) {
     // 手数(使わない)
     iss >> sfen_count;
 
-    // Stackはここで
     checked = inCheck(turn);
 
     // 指し手
@@ -581,7 +580,7 @@ Score search(Position &pos, Score alpha, const Score beta, const int depth) {
         // 千日手 16手まで遡る
         for (int i = 4; i <= 16; i += 2) {
             if (Position::equal(pos, *(&pos - i))) {
-                if (pos.continuous_check[pos.turn] * 2 >= i) return -ScoreInfinite;
+                if (pos.continuous_check[ pos.turn] * 2 >= i) return -ScoreInfinite;
                 if (pos.continuous_check[~pos.turn] * 2 >= i) return +ScoreInfinite;
                 return 0;
             }
